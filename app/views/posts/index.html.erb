@@ -1,1 +1,19 @@
-<h1>INDEX REDIRECT SUCCESS</h1>
+<h2>All posts:</h2>
+<% @posts.each do |post| %>
+  <div>
+    Title: <%= post.title %> <br \>
+    Author:
+    <% if current_user %>
+      <% if post.user_id.nil? %>
+        <%= "Anonymous" %>
+      <% else %>
+        <%= User.find(post.user_id).name %>
+      <% end %>
+    <% else %>
+      <%= "[INVISIBLE TO LOGGED OUT USERS]" %>
+    <% end %>
+            <br \>
+    Contents: <%= post.body %> <br \>
+  </div>
+  <hr>
+<% end %>
